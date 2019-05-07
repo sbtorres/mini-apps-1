@@ -40,55 +40,23 @@ var updateTile = (clickedCell) => {
 var updateBoard = (event, player) => {
   let tileIndex = parseInt(event.target.id);
   if (player === 'X') {
-    if (tileIndex <= 3) {
-      playerXBoard.Row1++;
-    }
-    if (tileIndex <= 6 && tileIndex > 3) {
-      playerXBoard.Row2++;
-    }
-    if (tileIndex <= 9 && tileIndex > 6) {
-      playerXBoard.Row3++;
-    }
-    if (tileIndex === 1 || tileIndex === 4 || tileIndex === 7 ) {
-      playerXBoard.Co11++;
-    }
-    if (tileIndex === 2 || tileIndex === 5 || tileIndex === 8 ) {
-      playerXBoard.Col2++;
-    }
-    if (tileIndex % 3 === 0 ) {
-      playerXBoard.Col3++;
-    }
-    if (tileIndex === 1 || tileIndex === 5 || tileIndex === 9 ) {
-      playerXBoard.MajorDiag++;
-    }
-    if (tileIndex === 3 || tileIndex === 5 || tileIndex === 7 ) {
-      playerXBoard.MinorDiag++;
-    }
+    (tileIndex <= 3) ? playerXBoard.Row1++ : null;
+    (tileIndex <= 6 && tileIndex > 3) ? playerXBoard.Row2++ : null;
+    (tileIndex <= 9 && tileIndex > 6) ? playerXBoard.Row3++ : null;
+    (tileIndex === 1 || tileIndex === 4 || tileIndex === 7) ? playerXBoard.Col1++ : null;
+    (tileIndex === 2 || tileIndex === 5 || tileIndex === 8) ? playerXBoard.Col2++ : null;
+    (tileIndex % 3 === 0) ? playerXBoard.Col3++ : null;
+    (tileIndex === 1 || tileIndex === 5 || tileIndex === 9) ? playerXBoard.MajorDiag++ : null;
+    (tileIndex === 3 || tileIndex === 5 || tileIndex === 7) ? playerXBoard.MinorDiag++ : null;
   } else {
-    if (tileIndex <= 3) {
-      playerOBoard.Row1++;
-    }
-    if (tileIndex <= 6 && tileIndex > 3) {
-      playerOBoard.Row2++;
-    }
-    if (tileIndex <= 9 && tileIndex > 6) {
-      playerOBoard.Row3++;
-    }
-    if (tileIndex === 1 || tileIndex === 4 || tileIndex === 7 ) {
-      playerOBoard.Co11++;
-    }
-    if (tileIndex === 2 || tileIndex === 5 || tileIndex === 8 ) {
-      playerOBoard.Col2++;
-    }
-    if (tileIndex % 3 === 0 ) {
-      playerOBoard.Col3++;
-    }
-    if (tileIndex === 1 || tileIndex === 5 || tileIndex === 9 ) {
-      playerOBoard.MajorDiag++;
-    }
-    if (tileIndex === 3 || tileIndex === 5 || tileIndex === 7 ) {
-      playerOBoard.MinorDiag++;
-    }
+    (tileIndex <= 3) ? playerOBoard.Row1++ : null;
+    (tileIndex <= 6 && tileIndex > 3) ? playerOBoard.Row2++ : null;
+    (tileIndex <= 9 && tileIndex > 6) ? playerOBoard.Row3++ : null;
+    (tileIndex === 1 || tileIndex === 4 || tileIndex === 7) ? playerOBoard.Col1++ : null;
+    (tileIndex === 2 || tileIndex === 5 || tileIndex === 8) ? playerOBoard.Col2++ : null;
+    (tileIndex % 3 === 0) ? playerOBoard.Col3++ : null;
+    (tileIndex === 1 || tileIndex === 5 || tileIndex === 9) ? playerOBoard.MajorDiag++ : null;
+    (tileIndex === 3 || tileIndex === 5 || tileIndex === 7) ? playerOBoard.MinorDiag++ : null;
   }
 }
 
