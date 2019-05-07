@@ -23,8 +23,6 @@ var onTileClick = (event) => {
 
 var updateTile = () => {
   var clickedCell = document.getElementById(event.target.id);
-  counter++;
-  numOfPlays++;
   combinedBoard[event.target.id] = true; 
   if (counter % 2 === 0) {
     clickedCell.innerText = 'O';
@@ -39,6 +37,8 @@ var updateTile = () => {
 }
 
 var updateBoard = (event, player) => {
+  counter++;
+  numOfPlays++;
   let tileIndex = parseInt(event.target.id);
   if (player === 'X') {
     (tileIndex <= 3) ? playerXBoard.Row1++ : null;
@@ -67,7 +67,6 @@ var checkForWinner = () => {
       alert('Player X Won!');
       playerXWins++;
       counter = 0;
-      numOfPlays = 0;
       renderWinsTable();
       return; 
     }
@@ -76,7 +75,6 @@ var checkForWinner = () => {
     if (playerOBoard[key] > 2) {
       playerOWins++;
       counter = 1;
-      numOfPlays = 0;
       renderWinsTable();
       alert('Player O Won');
       return;
@@ -101,6 +99,7 @@ var resetBoard = () => {
   for (let key in combinedBoard) {
     combinedBoard[key] = false;
   }
+  numOfPlays = 0;
 }
 
 renderWinsTable();
