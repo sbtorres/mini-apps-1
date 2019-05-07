@@ -15,6 +15,7 @@ var renderWinsTable = () => {
 var onTileClick = (event) => {
   var clickedCell = document.getElementById(event.target.id)
   if (clickedCell.innerHTML) {
+    alert('Sorry, that space is occupied');
     return;
   }
   updateTile(clickedCell);
