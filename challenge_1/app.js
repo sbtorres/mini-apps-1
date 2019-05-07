@@ -1,6 +1,8 @@
 var counter = 1;
 var playerXBoard = {Row1: 0, Row2: 0, Row3: 0, Col1: 0, Col2: 0, Col3: 0, MajorDiag: 0, MinorDiag: 0}
 var playerOBoard = {Row1: 0, Row2: 0, Row3: 0, Col1: 0, Col2: 0, Col3: 0, MajorDiag: 0, MinorDiag: 0}
+var playerXWins = 0;
+var playerOWins = 0;
 
 var onTileClick = (event) => {
   var clickedCell = document.getElementById(event.target.id)
@@ -79,11 +81,13 @@ var checkForWinner = () => {
   for (let key in playerXBoard) {
     if (playerXBoard[key] > 2) {
       alert('Player X Won!');
+      playerXWins++;
       return; 
     }
   }
   for (let key in playerOBoard) {
     if (playerOBoard[key] > 2) {
+      playerOWins++;
       alert('Player O Won');
       return;
     }
