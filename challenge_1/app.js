@@ -1,4 +1,5 @@
 var counter = 1;
+var numOfPlays = 0;
 var playerXBoard = {Row1: 0, Row2: 0, Row3: 0, Col1: 0, Col2: 0, Col3: 0, MajorDiag: 0, MinorDiag: 0}
 var playerOBoard = {Row1: 0, Row2: 0, Row3: 0, Col1: 0, Col2: 0, Col3: 0, MajorDiag: 0, MinorDiag: 0}
 var playerXWins = 0;
@@ -18,20 +19,23 @@ var onTileClick = (event) => {
   }
   if (counter % 2 === 0) {
     counter++;
+    numOfPlays++;
     clickedCell.innerText = 'O';
+    updateBoard(event, 'O');
   } else {
     counter++;
+    numOfPlays++;
     clickedCell.innerText = 'X';
+    updateBoard(event, 'X');
   }
-  updateBoard(event, counter % 2);
-  if (counter > 5) {
+  if (counter > 4) {
     checkForWinner();
   }
 }
 
-var updateBoard = (event, turn) => {
+var updateBoard = (event, player) => {
   let tileIndex = parseInt(event.target.id);
-  if (turn === 0) {
+  if (player === 'X') {
     if (tileIndex <= 3) {
       playerXBoard.Row1++;
     }
@@ -89,6 +93,8 @@ var checkForWinner = () => {
     if (playerXBoard[key] > 2) {
       alert('Player X Won!');
       playerXWins++;
+      counter = 0;
+      numOfPlays = 0;
       renderWinsTable();
       return; 
     }
@@ -97,11 +103,13 @@ var checkForWinner = () => {
     if (playerOBoard[key] > 2) {
       playerOWins++;
       renderWinsTable();
+      counter = 1;
+      numOfPlays = 0;
       alert('Player O Won');
       return;
     }
   }
-  if (counter === 10) {
+  if (numOfPlays === 9) {
     alert('Cats Game!');
   } 
 }
@@ -117,7 +125,6 @@ var resetBoard = () => {
   for (let key in playerOBoard) {
     playerOBoard[key] = 0;
   }
-  counter = 1;
 }
 
 renderWinsTable();
