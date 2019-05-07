@@ -4,6 +4,13 @@ var playerOBoard = {Row1: 0, Row2: 0, Row3: 0, Col1: 0, Col2: 0, Col3: 0, MajorD
 var playerXWins = 0;
 var playerOWins = 0;
 
+var renderWinsTable = () => {
+  var xWinsTable = document.getElementById("player-x-wins");
+  xWinsTable.innerText = "Player X Wins: " + playerXWins;
+  var oWinsTable = document.getElementById("player-o-wins");
+  oWinsTable.innerText = "Player O Wins: " + playerOWins;
+}
+
 var onTileClick = (event) => {
   var clickedCell = document.getElementById(event.target.id)
   if (clickedCell.innerHTML) {
@@ -11,10 +18,10 @@ var onTileClick = (event) => {
   }
   if (counter % 2 === 0) {
     counter++;
-    clickedCell.innerHTML = 'O';
+    clickedCell.innerText = 'O';
   } else {
     counter++;
-    clickedCell.innerHTML = 'X';
+    clickedCell.innerText = 'X';
   }
   updateBoard(event, counter % 2);
   if (counter > 5) {
@@ -82,12 +89,14 @@ var checkForWinner = () => {
     if (playerXBoard[key] > 2) {
       alert('Player X Won!');
       playerXWins++;
+      renderWinsTable();
       return; 
     }
   }
   for (let key in playerOBoard) {
     if (playerOBoard[key] > 2) {
       playerOWins++;
+      renderWinsTable();
       alert('Player O Won');
       return;
     }
@@ -110,4 +119,6 @@ var resetBoard = () => {
   }
   counter = 1;
 }
+
+renderWinsTable();
 

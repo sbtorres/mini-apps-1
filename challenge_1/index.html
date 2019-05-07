@@ -6,8 +6,15 @@
   </head>
   
   <body>
-    <h1> Tic-Tac-Toe! </h1>
-    <table onClick="return onTileClick(event)">
+    <h1 style="margin: 0px 0px 0px 90px"> Tic-Tac-Toe! </h1>
+    <table style="border: 2px solid">
+      <th style="background-color: darkslategray; color: white; border: 3px solid black" colSpan = 2>Current Game Status</th>
+      <tr>
+        <td style="width: 160px; height: 20px; border: 3px solid" id="player-x-wins"></td>
+        <td style="width: 160px; height: 20px; border: 3px solid" id="player-o-wins"></td>
+      </tr>
+    </table>
+    <table style="margin: 20px 0px 0px 120px" onClick="return onTileClick(event)">
       <tr>
         <td id=1 style="width: 30px; height: 30px; border: 1px solid"></td>
         <td id=2 style="width: 30px; height: 30px; border: 1px solid"></td>
@@ -24,7 +31,7 @@
         <td id=9 style="width: 30px; height: 30px; border: 1px solid"></td>
       </tr>
     </table>
-    <button style="margin:25px 0px 0px 10px;" onClick="return resetBoard()">New Game!</button>
+    <button style="margin:25px 0px 0px 135px;" onClick="return resetBoard()">New Game!</button>
     <script src="app.js"></script>
   </body>
   
