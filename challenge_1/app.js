@@ -17,6 +17,10 @@ var onTileClick = (event) => {
   if (clickedCell.innerHTML) {
     return;
   }
+  updateTile(clickedCell);
+}
+
+var updateTile = (clickedCell) => {
   if (counter % 2 === 0) {
     counter++;
     numOfPlays++;
@@ -102,9 +106,9 @@ var checkForWinner = () => {
   for (let key in playerOBoard) {
     if (playerOBoard[key] > 2) {
       playerOWins++;
-      renderWinsTable();
       counter = 1;
       numOfPlays = 0;
+      renderWinsTable();
       alert('Player O Won');
       return;
     }
