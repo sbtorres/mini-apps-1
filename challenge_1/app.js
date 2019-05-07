@@ -2,6 +2,7 @@ var counter = 1;
 var numOfPlays = 0;
 var playerXBoard = {Row1: 0, Row2: 0, Row3: 0, Col1: 0, Col2: 0, Col3: 0, MajorDiag: 0, MinorDiag: 0}
 var playerOBoard = {Row1: 0, Row2: 0, Row3: 0, Col1: 0, Col2: 0, Col3: 0, MajorDiag: 0, MinorDiag: 0}
+var combinedBoard = {1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false};
 var playerXWins = 0;
 var playerOWins = 0;
 
@@ -13,23 +14,22 @@ var renderWinsTable = () => {
 }
 
 var onTileClick = (event) => {
-  var clickedCell = document.getElementById(event.target.id)
-  if (clickedCell.innerHTML) {
+  if (combinedBoard[event.target.id]) {
     alert('Sorry, that space is occupied');
     return;
   }
-  updateTile(clickedCell);
+  updateTile();
 }
 
-var updateTile = (clickedCell) => {
+var updateTile = () => {
+  var clickedCell = document.getElementById(event.target.id);
+  counter++;
+  numOfPlays++;
+  combinedBoard[event.target.id] = true; 
   if (counter % 2 === 0) {
-    counter++;
-    numOfPlays++;
     clickedCell.innerText = 'O';
     updateBoard(event, 'O');
   } else {
-    counter++;
-    numOfPlays++;
     clickedCell.innerText = 'X';
     updateBoard(event, 'X');
   }
@@ -97,6 +97,9 @@ var resetBoard = () => {
   }
   for (let key in playerOBoard) {
     playerOBoard[key] = 0;
+  }
+  for (let key in combinedBoard) {
+    combinedBoard[key] = false;
   }
 }
 
