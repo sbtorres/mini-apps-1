@@ -75,17 +75,35 @@ var updateBoard = (event, turn) => {
   }
 }
 
-
 var checkForWinner = () => {
   for (let key in playerXBoard) {
     if (playerXBoard[key] > 2) {
       alert('Player X Won!');
+      return; 
     }
   }
   for (let key in playerOBoard) {
     if (playerOBoard[key] > 2) {
       alert('Player O Won');
+      return;
     }
   }
+  if (counter === 10) {
+    alert('Cats Game!');
+  } 
+}
+
+var resetBoard = () => {
+  for (let i = 1; i < 10; i++) {
+    var tile = document.getElementById(JSON.stringify(i));
+    tile.innerHTML = '';
+  }
+  for (let key in playerXBoard) {
+    playerXBoard[key] = 0;
+  }
+  for (let key in playerOBoard) {
+    playerOBoard[key] = 0;
+  }
+  counter = 1;
 }
 
