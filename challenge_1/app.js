@@ -15,7 +15,9 @@ var onTileClick = (event) => {
     clickedCell.innerHTML = 'X';
   }
   updateBoard(event, counter % 2);
-  checkForWinner();
+  if (counter > 5) {
+    checkForWinner();
+  }
 }
 
 var updateBoard = (event, turn) => {
@@ -77,16 +79,13 @@ var updateBoard = (event, turn) => {
 var checkForWinner = () => {
   for (let key in playerXBoard) {
     if (playerXBoard[key] > 2) {
-      console.log('Player X Won!');
+      alert('Player X Won!');
     }
   }
   for (let key in playerOBoard) {
     if (playerOBoard[key] > 2) {
-      console.log('Player O Won');
+      alert('Player O Won');
     }
   }
-  console.log(playerXBoard);
-  console.log(playerOBoard);
 }
 
-checkForWinner();
