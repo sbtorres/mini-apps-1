@@ -1,6 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -9,10 +6,12 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>TEST REACT</div>
+      <div>
+        <div>TEST REACT</div>
+        <div>TEST MORE REACT</div>
+      </div>
     )
   }
 }
-
 
 ReactDOM.render(<App />, document.getElementById("app"));
