@@ -9,7 +9,7 @@ class App extends React.Component {
     };
 
     this.onCheckoutButtonClick = this.onCheckoutButtonClick.bind(this);
-    this.onFormOneSubmit = this.onFormOneSubmit.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
   onCheckoutButtonClick (event) {
@@ -22,12 +22,10 @@ class App extends React.Component {
     });
   }
 
-  onFormOneSubmit (formContents) {
+  onFormSubmit (formContents, name) {
     this.setState({
       currentStep: 2,
-      accountInfo: formContents,
-      addressInfo: {},
-      billingInfo: {}
+      [name]: formContents
     })
   }
 
@@ -43,7 +41,7 @@ class App extends React.Component {
     if (this.state.currentStep === 1) {
       return (
         <div>
-          <FormOne onFormOneSubmit={this.onFormOneSubmit}/>
+          <FormOne onFormSubmit={this.onFormSubmit}/>
         </div>
       )
     }
@@ -51,7 +49,7 @@ class App extends React.Component {
     if (this.state.currentStep === 2) {
       return (
         <div>
-          Test Form 1 Button Click
+          <FormTwo onFormSubmit={this.onFormSubmit}/>
         </div>
       )
     }
@@ -88,7 +86,7 @@ class FormOne extends React.Component {
 
   onNextButtonClick (event) {
     event.preventDefault();
-    this.props.onFormOneSubmit(this.state);
+    this.props.onFormSubmit(this.state, event.target.name);
   }
 
   render() {
@@ -113,7 +111,79 @@ class FormOne extends React.Component {
               name="password"
               onChange={this.handleChange} />
         </form>
-        <button onClick={this.onNextButtonClick}>Next</button>
+        <button name="accountInfo" onClick={this.onNextButtonClick}>Next</button>
+      </div>
+    )
+  }
+}
+
+
+class FormTwo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      addLine1: '',
+      addLine2: '',
+      city: '',
+      state: '',
+      shipZip: '',
+    }
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange (event) {
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+
+    this.setState({
+      [name]: value
+    })
+
+    this.onNextButtonClick = this.onNextButtonClick.bind(this);
+  }
+
+  onNextButtonClick (event) {
+    event.preventDefault();
+    this.props.onFormSubmit(this.state, event.target.name);
+  }
+
+  render() {
+    return (
+      <div>
+        <form>
+          <label htmlFor="addLine1">Address Line 1: </label>
+            <input 
+              type="text" 
+              name="addLine1" 
+              onChange={this.handleChange} />
+              <br></br>
+          <label htmlFor="addLine2">Address Line 2: </label>
+            <input
+              type="text"
+              name="addLine2" 
+              onChange={this.handleChange} />
+              <br></br>
+          <label htmlFor="city">City: </label>
+            <input
+              type="text"
+              name="city"
+              onChange={this.handleChange} />
+              <br></br>
+          <label htmlFor="state">State: </label>
+            <input
+              type="text"
+              name="state" 
+              onChange={this.handleChange} />
+              <br></br>
+          <label htmlFor="shipZip">Zip Code: </label>
+            <input
+              type="text"
+              name="shipZip" 
+              onChange={this.handleChange} />
+        </form>
+        <button name="addressInfo" onClick={this.onNextButtonClick}>Next</button>
       </div>
     )
   }
