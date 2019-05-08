@@ -1,14 +1,34 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {currentStep: 0};
+    this.state = {
+      currentStep: 0,
+      accountInfo: {},
+      addressInfo: {},
+      billingInfo: {}
+    };
 
     this.onCheckoutButtonClick = this.onCheckoutButtonClick.bind(this);
+    this.onFormOneSubmit = this.onFormOneSubmit.bind(this);
   }
 
   onCheckoutButtonClick (event) {
     event.preventDefault();
-    this.setState({currentStep: 1});
+    this.setState({
+      currentStep: 1,
+      accountInfo: {},
+      addressInfo: {},
+      billingInfo: {}
+    });
+  }
+
+  onFormOneSubmit (formContents) {
+    this.setState({
+      currentStep: 2,
+      accountInfo: formContents,
+      addressInfo: {},
+      billingInfo: {}
+    })
   }
 
   render() {
@@ -23,7 +43,15 @@ class App extends React.Component {
     if (this.state.currentStep === 1) {
       return (
         <div>
-          <FormOne />
+          <FormOne onFormOneSubmit={this.onFormOneSubmit}/>
+        </div>
+      )
+    }
+
+    if (this.state.currentStep === 2) {
+      return (
+        <div>
+          Test Form 1 Button Click
         </div>
       )
     }
@@ -54,6 +82,13 @@ class FormOne extends React.Component {
     this.setState({
       [name]: value
     })
+
+    this.onNextButtonClick = this.onNextButtonClick.bind(this);
+  }
+
+  onNextButtonClick (event) {
+    event.preventDefault();
+    this.props.onFormOneSubmit(this.state);
   }
 
   render() {
@@ -78,7 +113,7 @@ class FormOne extends React.Component {
               name="password"
               onChange={this.handleChange} />
         </form>
-        <button>Next</button>
+        <button onClick={this.onNextButtonClick}>Next</button>
       </div>
     )
   }
