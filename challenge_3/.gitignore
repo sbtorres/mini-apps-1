@@ -1,3 +1,4 @@
 #Ignore these files
 /lib/
 /node_modules/
+public/app.js

@@ -7,11 +7,14 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <div>TEST REACT</div>
-        <div>TEST MORE REACT</div>
+        <CheckoutButton></CheckoutButton>
       </div>
     )
   }
 }
+
+var CheckoutButton = (props) => (
+  <button>Checkout</button>
+)
 
 ReactDOM.render(<App />, document.getElementById("app"));
