@@ -5,7 +5,8 @@
   "main": "./server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon ./server/server.js"
+    "server": "nodemon ./server/server.js",
+    "build": "./node_modules/.bin/babel src --out-dir lib --watch"
   },
   "author": "Scott Torres",
   "license": "ISC",
