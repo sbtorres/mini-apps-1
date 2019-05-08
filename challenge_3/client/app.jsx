@@ -58,25 +58,28 @@ class FormOne extends React.Component {
 
   render() {
     return (
-      <form>
-        <label htmlFor="name">Name: </label>
-          <input 
-            type="text" 
-            name="name" 
-            onChange={this.handleChange} />
-            <br></br>
-        <label htmlFor="email">Email: </label>
-          <input
-            type="text"
-            name="email" 
-            onChange={this.handleChange} />
-            <br></br>
-        <label htmlFor="password">Password: </label>
-          <input
-            type="text"
-            name="password"
-            onChange={this.handleChange} />
-      </form>
+      <div>
+        <form>
+          <label htmlFor="name">Name: </label>
+            <input 
+              type="text" 
+              name="name" 
+              onChange={this.handleChange} />
+              <br></br>
+          <label htmlFor="email">Email: </label>
+            <input
+              type="text"
+              name="email" 
+              onChange={this.handleChange} />
+              <br></br>
+          <label htmlFor="password">Password: </label>
+            <input
+              type="text"
+              name="password"
+              onChange={this.handleChange} />
+        </form>
+        <button>Next</button>
+      </div>
     )
   }
 }
