@@ -7,7 +7,6 @@ class App extends React.Component {
   }
 
   onCheckoutButtonClick () {
-    console.log('clicked');
     this.setState({currentStep: 1});
   }
 
@@ -22,7 +21,14 @@ class App extends React.Component {
 
     if (this.state.currentStep === 1) {
       return (
-        <div>Test button functionality</div>
+        <form>
+          <label htmlFor="name">Name: </label>
+          <input type="text" name="name"></input><br></br>
+          <label htmlFor="email">Email: </label>
+          <input type="text" name="email"></input><br></br>
+          <label htmlFor="password">Password: </label>
+          <input type="text" name="password"></input>
+        </form>
       )
     }
   }
