@@ -15,26 +15,24 @@ class Board extends React.Component {
   render() {
     return (
       <div className="board">
-      <div className="row-1">
-        <Row1 Row1={this.props.state.Row1}/>
-      </div>
-      <div className="row-2">
-        <Row2 Row2={this.props.state.Row2}/>
-      </div>
-      <div className="row-3">
-        <Row3 Row3={this.props.state.Row3}/>
-      </div>
-      <div className="row-4">
-        <Row4 Row4={this.props.state.Row4}/>
-      </div>
-      <div className="row-5">
-        <Row5 Row5={this.props.state.Row5}/>
-      </div>
-      <div className="row-6">
-        <Row6 Row6={this.props.state.Row6}/>
-      </div>
-
-
+        <div className="row-1">
+          <Row1 onTileClick={this.props.onTileClick} Row1={this.props.state.Row1}/>
+        </div>
+        <div className="row-2">
+          <Row2 onTileClick={this.props.onTileClick} Row2={this.props.state.Row2}/>
+        </div>
+        <div className="row-3">
+          <Row3 onTileClick={this.props.onTileClick} Row3={this.props.state.Row3}/>
+        </div>
+        <div className="row-4">
+          <Row4 onTileClick={this.props.onTileClick} Row4={this.props.state.Row4}/>
+        </div>
+        <div className="row-5">
+          <Row5 onTileClick={this.props.onTileClick} Row5={this.props.state.Row5}/>
+        </div>
+        <div className="row-6">
+          <Row6 onTileClick={this.props.onTileClick} Row6={this.props.state.Row6}/>
+        </div>
       </div>
     )
   }

@@ -31,12 +31,20 @@ class App extends React.Component {
       MinDiag5: [false, false, false, false, false],
       MinDiag6: [false, false, false, false],
     };
+
+    this.onTileClick = this.onTileClick.bind(this);
+  }
+
+  onTileClick(event) {
+    event.preventDefault();
+    console.log('click!');
+
   }
 
   render() {
     return (
       <div>
-        <Board state={this.state} />
+        <Board onTileClick={this.onTileClick} state={this.state} />
       </div>
     )
   }
