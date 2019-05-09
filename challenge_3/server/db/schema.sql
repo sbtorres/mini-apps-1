@@ -19,7 +19,7 @@ CREATE TABLE address_info (id INT AUTO_INCREMENT PRIMARY KEY,
                            FOREIGN KEY (account_id) REFERENCES account_info (id));
 
 CREATE TABLE billing_info (id INT AUTO_INCREMENT PRIMARY KEY, 
-                           credit_card_number INT, 
+                           credit_card_number BIGINT, 
                            exp_date DATE, 
                            bill_zip INT,
                            account_id INT, 
