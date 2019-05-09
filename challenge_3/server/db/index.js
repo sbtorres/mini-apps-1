@@ -11,7 +11,6 @@ var createAccount = (reqBody, callback) => {
   connection.query(`INSERT INTO account_info (name, email, password) 
                     VALUES ("${reqBody.accountInfo.name}", "${reqBody.accountInfo.email}", "${reqBody.accountInfo.password}");`, (err, results) => {
                       if (err) {
-                        console.log('in err 1' + err);
                         callback(err);
                         return;
                       } else {
@@ -20,7 +19,6 @@ var createAccount = (reqBody, callback) => {
                         VALUES ("${reqBody.addressInfo.addLine1}", "${reqBody.addressInfo.addLine2}", "${reqBody.addressInfo.city}", "${reqBody.addressInfo.state}", ${reqBody.addressInfo.shipZip}, 
                         (SELECT id FROM account_info WHERE name = "${reqBody.accountInfo.name}"));`, (err, results) => {
                           if (err) {
-                            console.log('in err 2' + err);
                             callback(err);
                             return;
                           } else {
@@ -28,10 +26,8 @@ var createAccount = (reqBody, callback) => {
                             VALUES ("${reqBody.billingInfo.creditCardNum}", "${reqBody.billingInfo.expDate}", ${reqBody.billingInfo.billingZip}, 
                             (SELECT id FROM account_info WHERE name = "${reqBody.accountInfo.name}"));`, (err, results) => {
                               if (err) {
-                                console.log('in err 3' + err);
                                 callback (err);
                               } else {
-                                console.log('in success');
                                 callback(null, `Successfully posted account information for ${reqBody.accountInfo.name}`);
                               }
                             })
