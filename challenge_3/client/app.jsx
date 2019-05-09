@@ -25,6 +25,16 @@ class App extends React.Component {
   }
 
   onFormSubmit (formContents, name) {
+    for(let key in formContents) {
+      if(formContents[key] === '') {
+        if (key === 'addLine2') {
+          continue;
+        }
+        alert('Please fill out all of the inputs');
+        return;
+      }
+    }
+    
     let currentForm = this.state.currentStep;
     currentForm++;
     this.setState({
