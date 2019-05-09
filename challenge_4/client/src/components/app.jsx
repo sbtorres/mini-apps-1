@@ -32,12 +32,12 @@ class App extends React.Component {
       MinDiag6: [false, false, false, false],
     };
 
-    this.onTileClick = this.onTileClick.bind(this);
   }
 
   onTileClick(event) {
     event.preventDefault();
-    console.log('click!');
+    let clicked = event.target.id;
+    console.log(clicked);
 
   }
 

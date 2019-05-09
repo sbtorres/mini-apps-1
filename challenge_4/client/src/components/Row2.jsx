@@ -6,7 +6,8 @@ var Row2 = (props) => (
     <Tile onTileClick={props.onTileClick} 
           row={2} 
           col={index} 
-          key={index + 2} 
+          key={index + 7} 
+          id={index + 7}
           isOccupied={isOccupied}/>
   ))
 )
