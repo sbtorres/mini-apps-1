@@ -11,7 +11,7 @@ class App extends React.Component {
       Row4: [false, false, false, false, false, false, false],
       Row5: [false, false, false, false, false, false, false],
       Row6: [false, false, false, false, false, false, false],
-      Col1: [false, false, false, false, false, false, false],
+      Col1: [false, false, false, false, false, false],
       Col2: [false, false, false, false, false, false],
       Col3: [false, false, false, false, false, false],
       Col4: [false, false, false, false, false, false],
@@ -32,12 +32,27 @@ class App extends React.Component {
       MinDiag6: [false, false, false, false],
     };
 
+    this.onTileClick = this.onTileClick.bind(this);
   }
 
   onTileClick(event) {
     event.preventDefault();
+    console.log(event.target.id);
     let clicked = event.target.id;
-    console.log(clicked);
+    let column = (clicked % 7) + 1;
+    let newState = this.state
+    if (clicked % 7 === 0) {
+      for (let i = 5; i >= 0; i--) {
+        if (newState.Col1[i] === false) {
+          newState.Col1[i] = true;
+          break;
+        }
+      }
+      this.setState({
+        [`Col${column}`]: newState[`Col${column}`]
+      })
+    }
+
 
   }
 
