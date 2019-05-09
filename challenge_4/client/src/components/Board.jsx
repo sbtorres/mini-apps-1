@@ -1,7 +1,6 @@
 import React from 'react';
-import Board from './Board.jsx';
 
-class App extends React.Component {
+class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -9,12 +8,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <Board />
-      </div>
+      <div>BOARD</div>
     )
   }
 }
 
-export default App;
-
+export default Board;
