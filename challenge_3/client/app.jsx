@@ -11,6 +11,7 @@ class App extends React.Component {
     this.onCheckoutButtonClick = this.onCheckoutButtonClick.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onPurchaseClick = this.onPurchaseClick.bind(this);
+    this.onSummaryConfirmation = this.onSummaryConfirmation.bind(this);
   }
 
   onCheckoutButtonClick (event) {
@@ -32,6 +33,14 @@ class App extends React.Component {
     })
   }
 
+  onSummaryConfirmation (currentState) {
+    let currentForm = this.state.currentStep;
+    currentForm++;
+    this.setState({
+      currentStep: currentForm,
+    })
+  }
+
   onPurchaseClick(event) {
     axios.post('http://localhost:2500/makePurchase', this.state)
       .then(this.setState({
@@ -39,7 +48,7 @@ class App extends React.Component {
         accountInfo: {},
         addressInfo: {},
         billingInfo: {}
-      }))
+      })) 
   }
 
   render() {
@@ -76,6 +85,14 @@ class App extends React.Component {
     }
 
     if (this.state.currentStep === 4) {
+      return (
+        <div>
+          <SummaryPage onSummaryConfirmation={this.onSummaryConfirmation} summary={this.state}/>
+        </div>
+      )
+    }
+
+    if (this.state.currentStep === 5) {
       return (
         <div>
           <button onClick={this.onPurchaseClick}>Purchase!</button>
@@ -269,6 +286,38 @@ class FormThree extends React.Component {
               onChange={this.handleChange} />
         </form>
         <button name="billingInfo" onClick={this.onNextButtonClick}>Next</button>
+      </div>
+    )
+  }
+}
+
+class SummaryPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = props.summary;
+
+    this.onNextButtonClick = this.onNextButtonClick.bind(this);
+  }
+
+  onNextButtonClick (event) {
+    event.preventDefault();
+    this.props.onSummaryConfirmation(this.state);
+  }
+
+  render() {
+    return(
+      <div>
+        <div>Name: {this.props.summary.accountInfo.name}</div>
+        <div>Email: {this.props.summary.accountInfo.email}</div>
+        <div>Address Line 1: {this.props.summary.addressInfo.addLine1}</div>
+        <div>Address Line 2: {this.props.summary.addressInfo.addLine2}</div>
+        <div>City: {this.props.summary.addressInfo.city}</div>
+        <div>State: {this.props.summary.addressInfo.state}</div>
+        <div>Shipping Zip Code: {this.props.summary.addressInfo.shipZip}</div>
+        <div>Credit Card Number: {this.props.summary.billingInfo.creditCardNum}</div>
+        <div>Expiration Date: {this.props.summary.billingInfo.expDate}</div>
+        <div>Billing Zip Code: {this.props.summary.billingInfo.billingZip}</div>
+        <button name="summaryPage" onClick={this.onNextButtonClick}>Next</button>
       </div>
     )
   }
