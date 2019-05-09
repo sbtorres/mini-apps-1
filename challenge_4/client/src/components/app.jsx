@@ -37,23 +37,21 @@ class App extends React.Component {
 
   onTileClick(event) {
     event.preventDefault();
-    console.log(event.target.id);
     let clicked = event.target.id;
     let column = (clicked % 7) + 1;
+    let row = clicked === 0 ? 0 : Math.floor(clicked / 7) + 1;
     let newState = this.state
-    if (clicked % 7 === 0) {
-      for (let i = 5; i >= 0; i--) {
-        if (newState.Col1[i] === false) {
-          newState.Col1[i] = true;
-          break;
-        }
+    for (let i = 5; i >= 0; i--) {
+      if (newState[`Col${column}`][i] === false) {
+        newState[`Col${column}`][i] = true;
+        newState[`Row${i+1}`][column - 1] = true;
+        break;
       }
-      this.setState({
-        [`Col${column}`]: newState[`Col${column}`]
-      })
     }
-
-
+    this.setState({
+      [`Col${column}`]: newState[`Col${column}`],
+      [`Row${row}`]: newState[`Row${row}`]
+    })
   }
 
   render() {
