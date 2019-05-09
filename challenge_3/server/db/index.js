@@ -8,8 +8,8 @@ var connection = mysql.createConnection({
 });
 
 var createAccount = (reqBody, callback) => {
-  console.log(reqBody);
-  callback(null, 'Posted');
+  connection.query(`INSERT INTO account_info (name, email, password) VALUES ("${reqBody.name}", "${reqBody.email}", "${reqBody.password}");`);
+  callback(null, `Successfully posted account information for ${reqBody.name}`);
 }
 
 connection.connect();
