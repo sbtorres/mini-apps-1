@@ -33,12 +33,13 @@ class App extends React.Component {
   }
 
   onPurchaseClick(event) {
-    this.setState({
-      currentStep: 0,
-      accountInfo: {},
-      addressInfo: {},
-      billingInfo: {}
-    })
+    axios.post('http://localhost:2500/makePurchase', this.state)
+      .then(this.setState({
+        currentStep: 0,
+        accountInfo: {},
+        addressInfo: {},
+        billingInfo: {}
+      }))
   }
 
   render() {
