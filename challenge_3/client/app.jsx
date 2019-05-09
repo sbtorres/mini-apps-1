@@ -34,7 +34,7 @@ class App extends React.Component {
         return;
       }
     }
-    
+
     let currentForm = this.state.currentStep;
     currentForm++;
     this.setState({
@@ -163,7 +163,7 @@ class FormOne extends React.Component {
               <br></br>
           <label htmlFor="password">Password: </label>
             <input
-              type="text"
+              type="password"
               name="password"
               onChange={this.handleChange} />
         </form>
