@@ -1,0 +1,12 @@
+{
+  "name": "challenge_4",
+  "version": "1.0.0",
+  "description": "Connect Four Board Game",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Scott Torres",
+  "license": "ISC"
+}
