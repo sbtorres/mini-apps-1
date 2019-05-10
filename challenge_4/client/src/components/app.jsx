@@ -167,14 +167,9 @@ class App extends React.Component {
   }
 
   checkForTie() {
-    for (let i = 1; i < 7; i++) {
-      for (let j = 2; j < 9; j++) {
-        if (this.state[`Row${i}`][j] === 0) {
-          return;
-        }
-      }
+    if(this.state.counter === 41) {
+      alert('Tie Game!');
     }
-    alert('Tie Game!');
   }
 
   render() {
