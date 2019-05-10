@@ -43,6 +43,7 @@ class App extends React.Component {
     this.checkForRowWinner();
     this.checkForColWinner();
     this.checkForMajDiagWinner();
+    this.checkForMinDiagWinner();
   }
 
   checkForRowWinner() {
@@ -104,7 +105,6 @@ class App extends React.Component {
     let redInARow = 0;
     for (let i = 0; i < 6; i++) {
       for (let j = 0; j < 6; j++) {
-        console.log('check col: ' + (j + i) + ' row: ' + (j + 1));
         if (this.state[`Row${j + 1}`][j + i] === 1) {
           redInARow += 1;
           if (redInARow === 4) {
@@ -116,6 +116,33 @@ class App extends React.Component {
           blackInARow += 1;
           if (blackInARow === 4) {
             alert("Black Player is the winner by Major Diagonal!");
+          }
+          continue;
+        }
+        else {
+          blackInARow = 0;
+          redInARow = 0;
+        } 
+      }
+    }
+  }
+
+  checkForMinDiagWinner() {
+    let blackInARow = 0;
+    let redInARow = 0;
+    for (let i = 1; i < 7; i++) {
+      for (let j = 7; j > 1; j--) {
+        if (this.state[`Row${j - 1}`][i - (j - 6)] === 1) {
+          redInARow += 1;
+          if (redInARow === 4) {
+            alert("Red Player is the winner by Minor Diagonal!");
+          }
+          continue;
+        }
+        if (this.state[`Row${j - 1}`][i - (j - 6)] === -1) {
+          blackInARow += 1;
+          if (blackInARow === 4) {
+            alert("Black Player is the winner by Minor Diagonal!");
           }
           continue;
         }
