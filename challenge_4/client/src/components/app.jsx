@@ -5,12 +5,12 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      Row1: [0, 0, 0, 0, 0, 0, 0],
-      Row2: [0, 0, 0, 0, 0, 0, 0],
-      Row3: [0, 0, 0, 0, 0, 0, 0],
-      Row4: [0, 0, 0, 0, 0, 0, 0],
-      Row5: [0, 0, 0, 0, 0, 0, 0],
-      Row6: [0, 0, 0, 0, 0, 0, 0],
+      Row1: [null, null, 0, 0, 0, 0, 0, 0, 0, null, null],
+      Row2: [null, null, 0, 0, 0, 0, 0, 0, 0, null, null],
+      Row3: [null, null, 0, 0, 0, 0, 0, 0, 0, null, null],
+      Row4: [null, null, 0, 0, 0, 0, 0, 0, 0, null, null],
+      Row5: [null, null, 0, 0, 0, 0, 0, 0, 0, null, null],
+      Row6: [null, null, 0, 0, 0, 0, 0, 0, 0, null, null],
       counter: 0,
     };
 
@@ -20,17 +20,17 @@ class App extends React.Component {
   onTileClick(event) {
     event.preventDefault();
     let clicked = event.target.id;
-    let column = (clicked % 7) + 1;
+    let column = clicked % 11;
     let newState = this.state;
     let changedRow = 0;
     let incrementCounter = this.state.counter + 1;
-    for (let i = 6; i >= 1; i--) {
-      if (newState[`Row${i}`][column - 1] === 0) {
+    for (let i = 8; i >= 3; i--) {
+      if (newState[`Row${i - 2}`][column] === 0) {
         if (this.state.counter % 2 === 0) {
-          newState[`Row${i}`][column - 1] = 1;
+          newState[`Row${i - 2}`][column] = 1;
           changedRow = i;
         } else {
-          newState[`Row${i}`][column - 1] = -1;
+          newState[`Row${i - 2}`][column] = -1;
           changedRow = i;
         }
         break;
@@ -42,24 +42,25 @@ class App extends React.Component {
     })
     this.checkForRowWinner();
     this.checkForColWinner();
+    this.checkForMajDiagWinner();
   }
 
   checkForRowWinner() {
     let blackInARow = 0;
     let redInARow = 0;
     for (let i = 1; i < 7; i++) {
-      for (let j = 0; j < 7; j++) {
+      for (let j = 2; j < 9; j++) {
         if (this.state[`Row${i}`][j] === 1) {
           redInARow += 1;
           if (redInARow === 4) {
-            alert("Red Player is the winner!");
+            alert("Red Player is the winner by Row!");
           }
           continue;
         }
         if (this.state[`Row${i}`][j] === -1) {
           blackInARow += 1;
           if (blackInARow === 4) {
-            alert("Black Player is the winner!");
+            alert("Black Player is the winner by Row!");
           }
           continue;
         }
@@ -74,19 +75,47 @@ class App extends React.Component {
   checkForColWinner() {
     let blackInARow = 0;
     let redInARow = 0;
-    for (let i = 0; i < 7; i++) {
+    for (let i = 2; i < 9; i++) {
       for (let j = 1; j < 7; j++) {
         if (this.state[`Row${j}`][i] === 1) {
           redInARow += 1;
           if (redInARow === 4) {
-            alert("Red Player is the winner!");
+            alert("Red Player is the winner by Column!");
           }
           continue;
         }
         if (this.state[`Row${j}`][i] === -1) {
           blackInARow += 1;
           if (blackInARow === 4) {
-            alert("Black Player is the winner!");
+            alert("Black Player is the winner by Column!");
+          }
+          continue;
+        }
+        else {
+          blackInARow = 0;
+          redInARow = 0;
+        } 
+      }
+    }
+  }
+
+  checkForMajDiagWinner() {
+    let blackInARow = 0;
+    let redInARow = 0;
+    for (let i = 0; i < 6; i++) {
+      for (let j = 0; j < 6; j++) {
+        console.log('check col: ' + (j + i) + ' row: ' + (j + 1));
+        if (this.state[`Row${j + 1}`][j + i] === 1) {
+          redInARow += 1;
+          if (redInARow === 4) {
+            alert("Red Player is the winner by Major Diagonal!");
+          }
+          continue;
+        }
+        if (this.state[`Row${j + 1}`][j + i] === -1) {
+          blackInARow += 1;
+          if (blackInARow === 4) {
+            alert("Black Player is the winner by Major Diagonal!");
           }
           continue;
         }
