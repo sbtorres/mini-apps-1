@@ -56,6 +56,7 @@ class App extends React.Component {
       for (let j = 2; j < 9; j++) {
         if (this.state[`Row${i}`][j] === 1) {
           redInARow += 1;
+          blackInARow = 0;
           if (redInARow === 4) {
             alert("Red Player is the winner by Row!");
           }
@@ -63,6 +64,7 @@ class App extends React.Component {
         }
         if (this.state[`Row${i}`][j] === -1) {
           blackInARow += 1;
+          redInARow = 0;
           if (blackInARow === 4) {
             alert("Black Player is the winner by Row!");
           }
@@ -83,6 +85,7 @@ class App extends React.Component {
       for (let j = 1; j < 7; j++) {
         if (this.state[`Row${j}`][i] === 1) {
           redInARow += 1;
+          blackInARow = 0;
           if (redInARow === 4) {
             alert("Red Player is the winner by Column!");
           }
@@ -90,6 +93,7 @@ class App extends React.Component {
         }
         if (this.state[`Row${j}`][i] === -1) {
           blackInARow += 1;
+          redInARow = 0;
           if (blackInARow === 4) {
             alert("Black Player is the winner by Column!");
           }
@@ -110,6 +114,7 @@ class App extends React.Component {
       for (let j = 0; j < 6; j++) {
         if (this.state[`Row${j + 1}`][j + i] === 1) {
           redInARow += 1;
+          blackInARow = 0;
           if (redInARow === 4) {
             alert("Red Player is the winner by Major Diagonal!");
           }
@@ -117,6 +122,7 @@ class App extends React.Component {
         }
         if (this.state[`Row${j + 1}`][j + i] === -1) {
           blackInARow += 1;
+          redInARow = 0;
           if (blackInARow === 4) {
             alert("Black Player is the winner by Major Diagonal!");
           }
@@ -137,6 +143,7 @@ class App extends React.Component {
       for (let j = 7; j > 1; j--) {
         if (this.state[`Row${j - 1}`][i - (j - 6)] === 1) {
           redInARow += 1;
+          blackInARow = 0;
           if (redInARow === 4) {
             alert("Red Player is the winner by Minor Diagonal!");
           }
@@ -144,6 +151,7 @@ class App extends React.Component {
         }
         if (this.state[`Row${j - 1}`][i - (j - 6)] === -1) {
           blackInARow += 1;
+          redInARow = 0;
           if (blackInARow === 4) {
             alert("Black Player is the winner by Minor Diagonal!");
           }
