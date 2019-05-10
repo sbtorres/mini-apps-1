@@ -11,6 +11,7 @@ class App extends React.Component {
       Row4: [0, 0, 0, 0, 0, 0, 0],
       Row5: [0, 0, 0, 0, 0, 0, 0],
       Row6: [0, 0, 0, 0, 0, 0, 0],
+      counter: 0,
     };
 
     this.onTileClick = this.onTileClick.bind(this);
@@ -20,22 +21,25 @@ class App extends React.Component {
     event.preventDefault();
     let clicked = event.target.id;
     let column = (clicked % 7) + 1;
-    let row = clicked === 0 ? 0 : Math.floor(clicked / 7) + 1;
     let newState = this.state;
     let changedRow = 0;
+    let incrementCounter = this.state.counter + 1;
     for (let i = 6; i >= 1; i--) {
       if (newState[`Row${i}`][column - 1] === 0) {
-        newState[`Row${i}`][column - 1] = 1;
-        changedRow = i;
+        if (this.state.counter % 2 === 0) {
+          newState[`Row${i}`][column - 1] = 1;
+          changedRow = i;
+        } else {
+          newState[`Row${i}`][column - 1] = -1;
+          changedRow = i;
+        }
         break;
       }
     }
     this.setState({
-      [`Row${changedRow}`]: newState[`Row${changedRow}`]
+      [`Row${changedRow}`]: newState[`Row${changedRow}`],
+      counter: incrementCounter,
     })
-
-
-
   }
 
   render() {
