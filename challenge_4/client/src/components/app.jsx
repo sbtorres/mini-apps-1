@@ -21,6 +21,9 @@ class App extends React.Component {
     event.preventDefault();
     let clicked = event.target.id;
     let column = clicked % 11;
+    if (column < 2 || column > 8) {
+      return;
+    }
     let newState = this.state;
     let changedRow = 0;
     let incrementCounter = this.state.counter + 1;
