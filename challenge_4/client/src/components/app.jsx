@@ -47,6 +47,7 @@ class App extends React.Component {
     this.checkForColWinner();
     this.checkForMajDiagWinner();
     this.checkForMinDiagWinner();
+    this.checkForTie();
   }
 
   checkForRowWinner() {
@@ -163,6 +164,17 @@ class App extends React.Component {
         } 
       }
     }
+  }
+
+  checkForTie() {
+    for (let i = 1; i < 7; i++) {
+      for (let j = 2; j < 9; j++) {
+        if (this.state[`Row${i}`][j] === 0) {
+          return;
+        }
+      }
+    }
+    alert('Tie Game!');
   }
 
   render() {
