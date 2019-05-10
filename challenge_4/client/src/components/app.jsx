@@ -40,10 +40,11 @@ class App extends React.Component {
       [`Row${changedRow}`]: newState[`Row${changedRow}`],
       counter: incrementCounter,
     })
-    this.checkForWinner();
+    this.checkForRowWinner();
+    this.checkForColWinner();
   }
 
-  checkForWinner() {
+  checkForRowWinner() {
     let blackInARow = 0;
     let redInARow = 0;
     for (let i = 1; i < 7; i++) {
@@ -68,8 +69,35 @@ class App extends React.Component {
         } 
       }
     }
-
   }
+
+  checkForColWinner() {
+    let blackInARow = 0;
+    let redInARow = 0;
+    for (let i = 0; i < 7; i++) {
+      for (let j = 1; j < 7; j++) {
+        if (this.state[`Row${j}`][i] === 1) {
+          redInARow += 1;
+          if (redInARow === 4) {
+            alert("Red Player is the winner!");
+          }
+          continue;
+        }
+        if (this.state[`Row${j}`][i] === -1) {
+          blackInARow += 1;
+          if (blackInARow === 4) {
+            alert("Black Player is the winner!");
+          }
+          continue;
+        }
+        else {
+          blackInARow = 0;
+          redInARow = 0;
+        } 
+      }
+    }
+  }
+
   render() {
     return (
       <div>
